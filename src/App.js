@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       marginTop: theme.spacing(2),
       marginLeft: theme.spacing(111),
-      paddingBottom: theme.spacing(10)
+      paddingBottom: theme.spacing(10),
+      size: 'large'
     },
   },
 
@@ -70,12 +71,13 @@ function App() {
   //Returning data from API
   return (
     <div className="App">
-
+      {/**Intial Page logo */}
       <div className="header-image">
         <img src="/images/brewdog_logo.png" />
         <img src="/images/talentticker.png" />
       </div>
 
+      {/**Pagination component */}
       <div className={style.paginator}>
         <Pagination 
         count={3} 
@@ -87,16 +89,16 @@ function App() {
       </div>
 
       <div className={style.root}>
-        <ImageList rowHeight={180} className={style.imageList}>
-          <ImageListItem key="Subheader" cols={3} style={{ height: 'auto' }}>
-            <ListSubheader component="div">Beers</ListSubheader>
+        <ImageList rowHeight={380} cols={5}>
+          <ImageListItem key="Subheader" cols={5} style={{ height: 'auto' }}>
+           
           </ImageListItem>
           {filteredBeers && filteredBeers.map((beer, index) => (
             <ImageListItem key={index}>
-              <img src={beer.image_url} alt={beer.name} />
+              <img src={beer.image_url} alt={beer.name}  />
               <ImageListItemBar
                 title={beer.name}
-                subtitle={<span>by: {beer.name}</span>}
+                subtitle={<span>ABV: {beer.abv}</span>}
                 actionIcon={
                   <IconButton aria-label={`info about ${beer.name}`} className={style.icon}>
                     <InfoIcon />
@@ -108,7 +110,7 @@ function App() {
         </ImageList>
       </div>
 
-      {/* {beers && (
+       {beers && (
         <div className="beers">
 
           {beers.map((beer, index) => (
@@ -121,7 +123,7 @@ function App() {
           ))}
 
         </div>
-      )} */}
+      )} *
 
     </div>
   );
