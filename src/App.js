@@ -88,6 +88,7 @@ function App() {
         />
       </div>
 
+      {/**Beer Display*/}
       <div className={style.root}>
         <ImageList rowHeight={380} cols={5}>
           <ImageListItem key="Subheader" cols={5} style={{ height: 'auto' }}>
@@ -98,12 +99,7 @@ function App() {
               <img src={beer.image_url} alt={beer.name}  />
               <ImageListItemBar
                 title={beer.name}
-                subtitle={<span>ABV: {beer.abv}</span>}
-                actionIcon={
-                  <IconButton aria-label={`info about ${beer.name}`} className={style.icon}>
-                    <InfoIcon />
-                  </IconButton>
-                }
+                subtitle={<span>ABV: {beer.abv}</span>}              
               />
             </ImageListItem>
           ))}
@@ -123,7 +119,7 @@ function App() {
           ))}
 
         </div>
-      )} *
+      )} 
 
     </div>
   );

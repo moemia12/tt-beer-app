@@ -6,27 +6,15 @@
   padding: 22rem;
 }
 
-.beers{
-  flex: 3;
-  flex-direction: row;
-  justify-content: flex-start;
-}
 
 .App .MuiImageList-root {
   overflow: visible;
 }
 
-.App .makeStyles-root-1 {
-  overflow: visible;
-}
 
-.App .makeStyles-imageList-2 {
-  width: 80%;
-  height: 450px;
-}
 
 .App .MuiImageListItem-imgFullWidth {
-  top: 75%;
-  width: 50%;
+  top: 50%;
+  width: 30%;
 }
 
