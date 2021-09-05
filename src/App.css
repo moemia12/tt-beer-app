@@ -6,15 +6,12 @@
   padding: 22rem;
 }
 
-
 .App .MuiImageList-root {
   overflow: visible;
+  padding: 450px;
 }
-
-
 
 .App .MuiImageListItem-imgFullWidth {
   top: 50%;
   width: 30%;
 }
-

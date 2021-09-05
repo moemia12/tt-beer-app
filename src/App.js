@@ -29,8 +29,7 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       marginTop: theme.spacing(2),
       marginLeft: theme.spacing(111),
-      paddingBottom: theme.spacing(10),
-      size: 'large'
+      marginBottom: theme.spacing(-50)
     },
   },
 
@@ -90,7 +89,7 @@ function App() {
 
       {/**Beer Display*/}
       <div className={style.root}>
-        <ImageList rowHeight={380} cols={5}>
+        <ImageList rowHeight={390} cols={5}>
           <ImageListItem key="Subheader" cols={5} style={{ height: 'auto' }}>
            
           </ImageListItem>
