@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
   paginator: {
     '& > *': {
       marginTop: theme.spacing(2),
+      marginLeft: theme.spacing(111),
+      paddingBottom: theme.spacing(10)
     },
   },
 
@@ -75,7 +77,13 @@ function App() {
       </div>
 
       <div className={style.paginator}>
-        <Pagination count={3} color="primary" onChange={handlePageChange}/>
+        <Pagination 
+        count={3} 
+        color="primary" 
+        hideNextButton={true} 
+        hidePrevButton={true} 
+        onChange={handlePageChange}
+        />
       </div>
 
       <div className={style.root}>
