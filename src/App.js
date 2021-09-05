@@ -22,8 +22,6 @@ function App() {
   return (
     <div className="App">
 
-      titleRTRT
-
 
       {beers && (
         <div className="beers">
@@ -33,11 +31,9 @@ function App() {
             <div key={index}>
               <h2>{beer.name}</h2>
               <h5><text>{beer.description}</text></h5>
-              <img src={beer.image_url}></img>
+              <img src={beer.image_url} alt=''></img>
             </div>
-
           ))}
-
 
         </div>
       )}
