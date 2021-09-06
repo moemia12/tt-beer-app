@@ -7,6 +7,8 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import Pagination from '@material-ui/lab/Pagination';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Button from '@material-ui/core/Button';
 
 import './App.css';
 
@@ -24,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
+  },
+  downButton: {
+    marginLeft: theme.spacing(111)
   },
   paginator: {
     '& > *': {
@@ -57,12 +62,14 @@ function App() {
     }
   }, []);
 
+  // Pagination function
   function handlePageChange(event) {
     const index = parseInt(event.target.innerText)
     const offset = (index - 1) * 10;
     setFilteredBeers(beers.slice(offset, offset + 10));
   }
 
+  // Filter by ABV function
   function filterByVolume() {
     beers.filter((beer) => beer.abv > 3);
   }
@@ -75,6 +82,16 @@ function App() {
         <img src="/images/brewdog_logo.png" />
         <img src="/images/talentticker.png" />
       </div>
+
+      <Button
+      style={useStyles.downButton}
+      onClick={() => console.log('clicked')}
+      color="default"
+      variant="text"
+      fullWidth='true'
+      startIcon={<ExpandMoreIcon/>}
+      ></Button>
+      
 
       {/**Pagination component */}
       <div className={style.paginator}>
