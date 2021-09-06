@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgba(255, 255, 255, 0.54)',
   },
   downButton: {
-    marginLeft: theme.spacing(111)
+    bottom: 380,
   },
   paginator: {
     '& > *': {
@@ -84,8 +84,9 @@ function App() {
       </div>
 
       <Button
-      style={useStyles.downButton}
+      className={style.downButton} 
       onClick={() => console.log('clicked')}
+      size='large'
       color="default"
       variant="text"
       fullWidth='true'
