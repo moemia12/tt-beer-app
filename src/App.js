@@ -74,6 +74,8 @@ function App() {
     beers.filter((beer) => beer.abv > 3);
   }
 
+  
+
   //Returning data from API
   return (
     <div className="App">
@@ -85,7 +87,10 @@ function App() {
 
       <Button
       className={style.downButton} 
-      onClick={() => console.log('clicked')}
+      onClick={() => window.scrollTo({
+        top: 925,
+        behavior: "smooth"
+      })}
       size='large'
       color="default"
       variant="text"
