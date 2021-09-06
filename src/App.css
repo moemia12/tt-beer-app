@@ -11,10 +11,12 @@
 
 .App .MuiImageList-root {
   overflow: visible;
-  padding: 450px;
+  padding: 350px;
+  position: relative;
+  bottom: 110px;
 }
 
 .App .MuiImageListItem-imgFullWidth {
-  top: 50%;
+  top: 40%;
   width: 30%;
 }

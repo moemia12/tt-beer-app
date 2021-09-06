@@ -10,6 +10,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
+
 import './App.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,23 +21,36 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
-  imageList: {
-    width: 500,
-    height: 450,
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
   downButton: {
     bottom: 380,
   },
+  infoBar: {
+    bottom: 50,
+    background: '	#686868',
+    boxShadow: '0px 5px 19px 15px rgba(0,0,0,0.7);'
+  },
   paginator: {
     '& > *': {
-      marginTop: theme.spacing(2),
       marginLeft: theme.spacing(111),
-      marginBottom: theme.spacing(-50)
+      position:'relative',
+      bottom: 300,
     },
   },
+  filterButton: {
+    backgroundColor: '#e7eff9',
+    backgroundImage: 'linear-gradient(315deg, #e7eff9 0%, #cfd6e6 74%)',
+    boxShadow: '0px 1px 3px 1px rgba(0,0,0,0.7);',
+    borderRadius: 100,
+    height: 100,
+    width: 200,
+    margin: theme.spacing(1),
+    top: 230,
+  },
+  beerFilterText: {
+    position: 'absolute',
+    left: 730,
+    bottom: -250,
+  }
 
 }));
 
@@ -88,7 +102,7 @@ function App() {
       <Button
       className={style.downButton} 
       onClick={() => window.scrollTo({
-        top: 925,
+        top: 1125,
         behavior: "smooth"
       })}
       size='large'
@@ -97,7 +111,30 @@ function App() {
       fullWidth='true'
       startIcon={<ExpandMoreIcon/>}
       ></Button>
-      
+
+      {/** Beer Filter */}
+      <div>
+        <h1 className={style.beerFilterText}>Select your Alcohol By Volume</h1>
+        <Button className={style.filterButton}>Work Night <br/>ABV ⬅️ 5 </Button>
+        <Button className={style.filterButton}>Weekend <br/>ABV ➡️ 5</Button>
+        <Button className={style.filterButton}>Holiday <br/>ABV ➡️ 10</Button>
+      </div>
+
+      {/**Beer Display*/}
+      <div className={style.root}>
+        <ImageList rowHeight={390} cols={5}>
+
+          <ImageListItem key="Subheader" cols={5} style={{ height: 'auto' }}></ImageListItem>
+           
+          {filteredBeers && filteredBeers.map((beer, index) => (
+            <ImageListItem key={index}>
+              <img src={beer.image_url} alt={beer.name}/>
+              <ImageListItemBar className={style.infoBar} title={beer.name} subtitle={<span>ABV: {beer.abv}</span>}/>
+            </ImageListItem>
+          ))}
+
+        </ImageList>
+      </div>
 
       {/**Pagination component */}
       <div className={style.paginator}>
@@ -108,40 +145,7 @@ function App() {
         hidePrevButton={true} 
         onChange={handlePageChange}
         />
-      </div>
-
-      {/**Beer Display*/}
-      <div className={style.root}>
-        <ImageList rowHeight={390} cols={5}>
-          <ImageListItem key="Subheader" cols={5} style={{ height: 'auto' }}>
-           
-          </ImageListItem>
-          {filteredBeers && filteredBeers.map((beer, index) => (
-            <ImageListItem key={index}>
-              <img src={beer.image_url} alt={beer.name}  />
-              <ImageListItemBar
-                title={beer.name}
-                subtitle={<span>ABV: {beer.abv}</span>}              
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      </div>
-
-       {beers && (
-        <div className="beers">
-
-          {beers.map((beer, index) => (
-
-            <div className="beer" key={index}>
-              <h2>{beer.name}</h2>
-              <h5><text>{beer.description}</text></h5>
-              <img src={beer.image_url} alt=''></img>
-            </div>
-          ))}
-
-        </div>
-      )} 
+      </div> 
 
     </div>
   );
