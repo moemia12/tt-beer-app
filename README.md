@@ -1,4 +1,4 @@
-This app displays a page using data (Beers from BeerDog) retrieved from Punk API. 
+This app displays a page using data (Beers from BeerDog) retrieved from Punk API. Click on the arrow to animate scroll to the next section.
 
 - The API retrieves JSON data from https://punkapi.com/documentation/v2
 - Display content in an organised grid
