@@ -3,9 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 import Pagination from '@material-ui/lab/Pagination';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
@@ -23,24 +20,30 @@ const useStyles = makeStyles((theme) => ({
   },
   infoBar: {
     bottom: 50,
-    background: '	#686868',
-    boxShadow: '0px 5px 19px 15px rgba(0,0,0,0.7);'
+    background: '	#e7eff9',
+    backgroundImage: 'linear-gradient(315deg, #e7eff9 0%, #cfd6e6 74%)',
+    boxShadow: '0px 7px 20px -10px rgba(0,0,0,1)',
+    backgroundColor: '#000000',
+    backgroundImage: 'linear-gradient(315deg, #000000 0%, #414141 74%)',
+    fontWeight: 'bold',
+
   },
   paginator: {
     '& > *': {
       marginLeft: theme.spacing(112),
       position: 'relative',
       bottom: 20,
+      
     },
   },
   filterButton: {
-    backgroundColor: '#e7eff9',
+    background: '	#e7eff9',
     backgroundImage: 'linear-gradient(315deg, #e7eff9 0%, #cfd6e6 74%)',
-    boxShadow: '0px 1px 3px 1px rgba(0,0,0,0.7);',
+    boxShadow: '0px 7px 20px -10px rgba(0,0,0,1)',
+    backgroundColor: '#000000',
+    backgroundImage: 'linear-gradient(315deg, #000000 0%, #414141 74%)',
     borderRadius: 100,
-    height: 100,
-    width: 200,
-    padding: 10,
+    padding: 14,
     margin: theme.spacing(1),
     cursor: 'pointer',
   },
@@ -119,17 +122,17 @@ function App() {
       <div className={style.beerFilter} style={{zIndex: '100'}} >
         <h1 className={style.beerFilterText}>Select your Alcohol By Volume</h1>
         
-          <span className={style.filterButton} onClick={(e) => filterByVolume(0, 5)}>ABV ◀ 5 </span>
-          <span className={style.filterButton} onClick={(e) => filterByVolume(5, 10)}>ABV ▶ 5</span>
-          <span className={style.filterButton} onClick={(e) => filterByVolume(10, 15)}>ABV ▶ 10</span>
+          <span className={style.filterButton} style={{color: 'white'}} onClick={(e) => filterByVolume(0, 5)}>ABV ◀ 5 </span>
+          <span className={style.filterButton} style={{color: 'white'}} onClick={(e) => filterByVolume(5, 10)}>ABV ▶ 5</span>
+          <span className={style.filterButton} style={{color: 'white'}} onClick={(e) => filterByVolume(10, 100)}>ABV ▶ 10</span>
         
       </div>
 
       {/**Beer Display*/}
       <div className={style.root}>
-        <ImageList rowHeight={390} cols={5}>
+        <ImageList rowHeight={390} cols={6}>
 
-          <ImageListItem key="Subheader" cols={5} style={{ height: 'auto' }}></ImageListItem>
+          <ImageListItem key="Subheader" cols={6} style={{ height: 'auto' }}></ImageListItem>
 
           {filteredBeers && filteredBeers.map((beer, index) => (
             <ImageListItem key={index}>
@@ -145,7 +148,7 @@ function App() {
         <Pagination
           className={style.paginator}
           count={3}
-          color="primary"
+          color="secondary"
           hideNextButton={true}
           hidePrevButton={true}
           onChange={handlePageChange}
