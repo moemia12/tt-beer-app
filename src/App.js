@@ -15,11 +15,8 @@ import './App.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    height: 1050,
   },
   downButton: {
     bottom: 380,
@@ -31,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paginator: {
     '& > *': {
-      marginLeft: theme.spacing(111),
-      position:'relative',
-      bottom: 300,
+      marginLeft: theme.spacing(112),
+      position: 'relative',
+      bottom: 20,
     },
   },
   filterButton: {
@@ -43,13 +40,18 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 100,
     height: 100,
     width: 200,
+    padding: 10,
     margin: theme.spacing(1),
-    top: 230,
+    cursor: 'pointer',
+  },
+  beerFilter: {
+    position: 'relative',
+      top: 230,
   },
   beerFilterText: {
     position: 'absolute',
     left: 730,
-    bottom: -250,
+    bottom: 20,
   }
 
 }));
@@ -59,8 +61,8 @@ function App() {
 
   let totalBeers = 0;
   // Hook to initialise state
-  const [beers, setBeers] = useState(null);
-  const [filteredBeers, setFilteredBeers] = useState(null);
+  const [beers, setBeers] = useState([]);
+  const [filteredBeers, setFilteredBeers] = useState([]);
 
   // Hook to retrieve information from API
   useEffect(() => {
@@ -77,47 +79,50 @@ function App() {
   }, []);
 
   // Pagination function
-  function handlePageChange(event) {
+  const handlePageChange = (event) => {
     const index = parseInt(event.target.innerText)
     const offset = (index - 1) * 10;
     setFilteredBeers(beers.slice(offset, offset + 10));
   }
 
   // Filter by ABV function
-  function filterByVolume() {
-    beers.filter((beer) => beer.abv > 3);
+  const filterByVolume = (min, max) => {
+    console.log('click')
+    const filtered = beers.filter((beer) => beer.abv > min && beer.abv < max);
+    setFilteredBeers(filtered);
   }
-
-  
 
   //Returning data from API
   return (
     <div className="App">
-      {/**Intial Page logo */}
+      {/** Intial Page logo */}
       <div className="header-image">
         <img src="/images/brewdog_logo.png" />
         <img src="/images/talentticker.png" />
       </div>
 
+      {/** Scroll Down Button */}
       <Button
-      className={style.downButton} 
-      onClick={() => window.scrollTo({
-        top: 1125,
-        behavior: "smooth"
-      })}
-      size='large'
-      color="default"
-      variant="text"
-      fullWidth='true'
-      startIcon={<ExpandMoreIcon/>}
+        className={style.downButton}
+        onClick={() => window.scrollTo({
+          top: 1125,
+          behavior: "smooth"
+        })}
+        size='large'
+        color="default"
+        variant="text"
+        fullWidth='true'
+        startIcon={<ExpandMoreIcon />}
       ></Button>
 
       {/** Beer Filter */}
-      <div>
+      <div className={style.beerFilter} style={{zIndex: '100'}} >
         <h1 className={style.beerFilterText}>Select your Alcohol By Volume</h1>
-        <Button className={style.filterButton}>Work Night <br/>ABV ⬅️ 5 </Button>
-        <Button className={style.filterButton}>Weekend <br/>ABV ➡️ 5</Button>
-        <Button className={style.filterButton}>Holiday <br/>ABV ➡️ 10</Button>
+        
+          <span className={style.filterButton} onClick={(e) => filterByVolume(0, 5)}>ABV ◀ 5 </span>
+          <span className={style.filterButton} onClick={(e) => filterByVolume(5, 10)}>ABV ▶ 5</span>
+          <span className={style.filterButton} onClick={(e) => filterByVolume(10, 15)}>ABV ▶ 10</span>
+        
       </div>
 
       {/**Beer Display*/}
@@ -125,11 +130,11 @@ function App() {
         <ImageList rowHeight={390} cols={5}>
 
           <ImageListItem key="Subheader" cols={5} style={{ height: 'auto' }}></ImageListItem>
-           
+
           {filteredBeers && filteredBeers.map((beer, index) => (
             <ImageListItem key={index}>
-              <img src={beer.image_url} alt={beer.name}/>
-              <ImageListItemBar className={style.infoBar} title={beer.name} subtitle={<span>ABV: {beer.abv}</span>}/>
+              <img src={beer.image_url} alt={beer.name} />
+              <ImageListItemBar className={style.infoBar} title={beer.name} subtitle={<span>ABV: {beer.abv}</span>} />
             </ImageListItem>
           ))}
 
@@ -137,15 +142,14 @@ function App() {
       </div>
 
       {/**Pagination component */}
-      <div className={style.paginator}>
-        <Pagination 
-        count={3} 
-        color="primary" 
-        hideNextButton={true} 
-        hidePrevButton={true} 
-        onChange={handlePageChange}
+        <Pagination
+          className={style.paginator}
+          count={3}
+          color="primary"
+          hideNextButton={true}
+          hidePrevButton={true}
+          onChange={handlePageChange}
         />
-      </div> 
 
     </div>
   );
