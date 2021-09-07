@@ -1,6 +1,18 @@
 /* External CSS for Material UI Styling overide */
 /* Main styling on App.js */
 
+* {
+  font-family: RobotoLight;
+}
+
+h6{
+  font-family: RobotoItalic;
+  position: relative;
+  bottom: 26.5rem;
+  margin-right: 0.6rem;
+  color: rgb(211, 0, 0);
+}
+
 .App {
   text-align: center;
 }

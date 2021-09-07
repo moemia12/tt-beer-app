@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
     height: 1050,
   },
   downButton: {
-    bottom: 380,
+    bottom: 450,
+
   },
   infoBar: {
     bottom: 50,
@@ -53,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
   },
   beerFilterText: {
     position: 'absolute',
-    left: 730,
-    bottom: 20,
+    left: 790,
+    bottom: 30,
   }
 
 }));
@@ -104,11 +105,13 @@ function App() {
         <img src="/images/talentticker.png" />
       </div>
 
+      <h6>Click Here</h6>
+
       {/** Scroll Down Button */}
       <Button
         className={style.downButton}
         onClick={() => window.scrollTo({
-          top: 1125,
+          top: 1225,
           behavior: "smooth"
         })}
         size='large'
@@ -118,9 +121,11 @@ function App() {
         startIcon={<ExpandMoreIcon />}
       ></Button>
 
+      
+
       {/** Beer Filter */}
       <div className={style.beerFilter} style={{zIndex: '100'}} >
-        <h1 className={style.beerFilterText}>Select your Alcohol By Volume</h1>
+        <h2 className={style.beerFilterText}>Select your Alcohol By Volume</h2>
         
           <span className={style.filterButton} style={{color: 'white'}} onClick={(e) => filterByVolume(0, 5)}>ABV ◀ 5 </span>
           <span className={style.filterButton} style={{color: 'white'}} onClick={(e) => filterByVolume(5, 10)}>ABV ▶ 5</span>
